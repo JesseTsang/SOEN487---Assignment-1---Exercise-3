@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://j2ee.netbeans.org/wsdl/CreditReport" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://j2ee.netbeans.org/wsdl/CreditReport" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CreditReport" targetNamespace="http://j2ee.netbeans.org/wsdl/CreditReport">
+    <types>
+        <xsd:schema xmlns:tns1="http://j2ee.netbeans.org/wsdl/CreditReport" targetNamespace="http://j2ee.netbeans.org/wsdl/CreditReport">
+            <xsd:element name="creditQuery">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="firstName" type="xsd:string"/>
+                        <xsd:element name="lastName" type="xsd:string"/>
+                        <xsd:element name="ssn" type="xsd:string"/>
+                        <xsd:element name="queryType" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="creditReport">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="firstName" type="xsd:string"/>
+                        <xsd:element name="lastName" type="xsd:string"/>
+                        <xsd:element name="dob" type="xsd:string"/>
+                        <xsd:element name="ssn" type="xsd:string"/>
+                        <xsd:element name="score" type="xsd:string"/>
+                        <xsd:element name="latestAddress1" type="xsd:string"/>
+                        <xsd:element name="latestAddress2" type="xsd:string"/>
+                        <xsd:element name="city" type="xsd:string"/>
+                        <xsd:element name="state" type="xsd:string"/>
+                        <xsd:element name="country" type="xsd:string"/>
+                        <xsd:element name="postalCode" type="xsd:string"/>
+                        <xsd:element name="liability" type="xsd:integer"/>
+                        <xsd:element name="liquidAssests" type="xsd:integer"/>
+                        <xsd:element name="immovableAssests" type="xsd:integer"/>
+                        <xsd:element name="currency" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+    <message name="CreditReportOperationRequest">
+        <part element="ns0:creditQuery" name="part1"/>
+    </message>
+    <message name="CreditReportOperationReply">
+        <part element="ns0:creditReport" name="part1"/>
+    </message>
+    <portType name="CreditReportPortType">
+        <wsdl:operation name="CreditReportOperation">
+            <wsdl:input message="tns:CreditReportOperationRequest" name="input1"/>
+            <wsdl:output message="tns:CreditReportOperationReply" name="output1"/>
+        </wsdl:operation>
+    </portType>
+    <binding name="binding1" type="tns:CreditReportPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="CreditReportOperation">
+            <wsdl:input name="input1">
+                <soap:body parts="part1" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="output1">
+                <soap:body parts="part1" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </binding>
+    <service name="service1">
+        <port binding="tns:binding1" name="port1">
+            <soap:address location="http://localhost:8080/SOEN487_-_A1E3/services/port1"/>
+        </port>
+    </service>
+</definitions>

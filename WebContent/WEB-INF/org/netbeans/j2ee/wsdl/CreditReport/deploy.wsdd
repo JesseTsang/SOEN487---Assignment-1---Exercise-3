@@ -1,0 +1,42 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from service1 WSDL service -->
+
+  <service name="port1" provider="java:RPC" style="document" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://j2ee.netbeans.org/wsdl/CreditReport"/>
+      <parameter name="wsdlServiceElement" value="service1"/>
+      <parameter name="schemaUnqualified" value="http://j2ee.netbeans.org/wsdl/CreditReport"/>
+      <parameter name="wsdlServicePort" value="port1"/>
+      <parameter name="className" value="org.netbeans.j2ee.wsdl.CreditReport.Binding1Skeleton"/>
+      <parameter name="wsdlPortType" value="CreditReportPortType"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://j2ee.netbeans.org/wsdl/CreditReport"
+        qname="ns:>creditQuery"
+        type="java:org.netbeans.j2ee.wsdl.CreditReport.CreditQuery"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://j2ee.netbeans.org/wsdl/CreditReport"
+        qname="ns:>creditReport"
+        type="java:org.netbeans.j2ee.wsdl.CreditReport.CreditReport"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
